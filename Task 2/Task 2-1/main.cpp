@@ -16,6 +16,12 @@ double getPerimeter(double length, double width);
 */
 double getArea(double length, double width);
 
+/**
+* \brief Считать сторону прямоугольника из консоли.
+* \param message Побуждающее сообщение для пользователя.
+* \return Сторона прямоугольника.
+*/
+double getSide(const std::string& message = "");
 
 /**
 * \brief Пользовательский ввод
@@ -34,15 +40,22 @@ enum class userInput
 */
 int main()
 {
-	std::cout << "Введите значение длины прямоугольника = ";
-	double length = 0.0;
-	std::cin >> length;
-	std::cout << "Введите значение ширины прямоугольника = ";
-	double width = 0.0;
-	std::cin >> width;
+	const double length = getSide("Введите значение длины прямоугольника = ");
+	if (length <= 0)
+	{
+		std::cout << "Введена неправильная длина!";
+		return 1;
+	}
+
+	const double width = getSide("Введите значение ширины прямоугольника = ");
+	if (width <= 0)
+	{
+		std::cout << "Введена неправильная ширина!";
+		return 1;
+	}
 
 	std::cout << "Введите число, соответсвующее заданию.\n"
-		<< static_cast<int>(userInput::AREA) << " - вычисление площади прямоугольника "
+		<< static_cast<int>(userInput::AREA) << " - вычисление площади прямоугольника.\n"
 		<< static_cast<int>(userInput::PERIMETER) << " - вычисление периметра прямоугольника.\n";
 
 	int input = 0;
@@ -77,4 +90,12 @@ double getPerimeter(const double length, const double width)
 double getArea(const double length, const double width)
 {
 	return length * width;
+}
+
+double getSide(const std::string& message)
+{
+	std::cout << message;
+	double side = 0.0;
+	std::cin >> side;
+	return side;
 }
