@@ -40,44 +40,40 @@ enum class userInput
 */
 int main()
 {
-	const double length = getSide("Введите значение длины прямоугольника = ");
-	if (length <= 0)
-	{
-		std::cout << "Введена неправильная длина!";
-		return 1;
-	}
+	try {
+		const double length = getSide("Введите значение длины прямоугольника = ");
+		const double width = getSide("Введите значение ширины прямоугольника = ");
 
-	const double width = getSide("Введите значение ширины прямоугольника = ");
-	if (width <= 0)
-	{
-		std::cout << "Введена неправильная ширина!";
-		return 1;
-	}
 
-	std::cout << "Введите число, соответсвующее заданию.\n"
-		<< static_cast<int>(userInput::AREA) << " - вычисление площади прямоугольника.\n"
-		<< static_cast<int>(userInput::PERIMETER) << " - вычисление периметра прямоугольника.\n";
+		std::cout << "Введите число, соответсвующее заданию.\n"
+			<< static_cast<int>(userInput::AREA) << " - вычисление площади прямоугольника.\n"
+			<< static_cast<int>(userInput::PERIMETER) << " - вычисление периметра прямоугольника.\n";
 
-	int input = 0;
-	std::cin >> input;
-	const auto choice = static_cast<userInput>(input);
+		int input = 0;
+		std::cin >> input;
+		const auto choice = static_cast<userInput>(input);
 
-	switch (choice)
-	{
-	case userInput::AREA:
+		switch (choice)
+		{
+		case userInput::AREA:
 		{
 			const auto area = getArea(length, width);
 			std::cout << " Площадь прямоугольника = " << area;
 			break;
 		}
-	case userInput::PERIMETER:
+		case userInput::PERIMETER:
 		{
 			const auto perimetr = getPerimeter(length, width);
 			std::cout << "Периметр прямоугольника = " << perimetr;
 			break;
 		}
+		}
 	}
-
+	catch (std::out_of_range&)
+	{
+		std::cout << "Введена неправильная сторона!";
+		return 1;
+	}
 	
 	return 0;
 }
@@ -97,5 +93,10 @@ double getSide(const std::string& message)
 	std::cout << message;
 	double side = 0.0;
 	std::cin >> side;
+	if (side <= 0)
+	{
+		throw std::out_of_range("Введена неправильная сторона!");
+	}
+
 	return side;
 }
