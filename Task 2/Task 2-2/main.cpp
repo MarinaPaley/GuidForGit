@@ -6,7 +6,7 @@
 * \param a - Константное значение.
 * \return Значение функции в точке \a x.
 */
-double getFunction1(const double x, const double a);
+double getFunctionBelowTreshold(const double x, const double a);
 
 /**
 * \brief Функция расчета значений для аргумента больше или равно пороговому значению.
@@ -14,7 +14,7 @@ double getFunction1(const double x, const double a);
 * \param a - Константное значение.
 * \return Значение функции в точке \a x.
 */
-double getFunction2(const double x, const double a);
+double getFunctionAboveOrEqualTreshold(const double x, const double a);
 
 /**
 * \brief Точка входа в программу.
@@ -31,24 +31,24 @@ int main()
 
 	if (x < THRESHOLD)
 	{
-		const double y = getFunction1(x, a);
+		const double y = getFunctionBelowTreshold(x, a);
 		std::cout << " y = " << y;
 	}
 	else
 	{
-		const double y = getFunction2(x, a);
+		const double y = getFunctionAboveOrEqualTreshold(x, a);
 		std::cout << " y = " << y;
 	}
 
 	return 0;
 }
 
-double getFunction1(const double x, const double a)
+double getFunctionBelowTreshold(const double x, const double a)
 {
 	return a * x / 3 + std::pow(x, 3);
 }
 
-double getFunction2(const double x, const double a)
+double getFunctionAboveOrEqualTreshold(const double x, const double a)
 {
 	return std::cbrt(std::pow(x, 3 * a)) * (a + 3 * x);
 }
