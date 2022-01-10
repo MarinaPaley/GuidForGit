@@ -17,18 +17,21 @@ double getPerimetr(double length, double width);
 double getArea(double length, double width);
 
 /**
+* \brief Считывает сторону прямоугольника.
+* \param message Побуждающее сообщение.
+* \return Сторноа прямоугольника.
+*/
+double getSide(const std::string& message = "");
+
+/**
 * \brief Точка входа в программу.
 * \return Возвращает 0 в случае успеха.
 */
 
 int main()
 {
-	std::cout << "Введите значение длины прямоугольника = ";
-	double length = 0.0;
-	std::cin >> length;
-	std::cout << "Введите значение ширины прямоугольника = ";
-	double width = 0.0;
-	std::cin >> width;
+	const double length = getSide("Введите значение длины прямоугольника = ");
+	const double width = getSide("Введите значение ширины прямоугольника = ");
 
 	const double perimetr = getPerimetr(length, width);
 	const double area = getArea(length, width);
@@ -48,4 +51,12 @@ double getPerimetr(const double length, const double width)
 double getArea(const double length, const double width)
 {
 	return length * width;
+}
+
+double getSide(const std::string& message)
+{
+	std::cout << message;
+	double side = 0.0;
+	std::cin >> side;
+	return side;
 }
