@@ -19,7 +19,7 @@ double getArea(double length, double width);
 /**
 * \brief Считывает сторону прямоугольника.
 * \param message Побуждающее сообщение.
-* \return Сторноа прямоугольника.
+* \return Сторона прямоугольника.
 */
 double getSide(const std::string& message = "");
 
@@ -31,7 +31,7 @@ double getSide(const std::string& message = "");
 int main()
 {
 	const double length = getSide("Введите значение длины прямоугольника = ");
-	const double width = getSide("Введите значение ширины прямоугольника = ");
+	const double width = getSide("Введите значение ширины прямоугольника = ");	
 
 	const double perimetr = getPerimetr(length, width);
 	const double area = getArea(length, width);
